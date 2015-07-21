@@ -1,43 +1,14 @@
-import requests
-import json
-
-import sir_exceptions
-
-
-class Call:
-    def __init__(self, url, method, params=None):
-        if method == 'GET':
-            r = requests.get(url, params=params)
-        elif method == 'POST':
-            r = requests.post(url, json=params)
-        elif method == 'PUT':
-            r = requests.put(url, json=params)
-        elif method == 'DELETE':
-            r = requests.delete(url)
-
-        if r.status_code != 200:
-            raise sir_exceptions.WrongCallException(r.status_code, r.content)
-        elif r.headers['content-type'] != 'application/json':
-            raise sir_exceptions.WrongEndpointException('Wrong content-type: {}', format(r.headers['content-type']))
-
-        self.raw_data = r.json()
-
-        if self.raw_data['meta']['error']:
-            raise Exception('Something went wrong')
-
-        self.meta = self.raw_data['meta']
-        self.parameters = self.raw_data['parameters']
-        self.result = self.raw_data['result']
+import call
 
 
 class pySIR:
     def __init__(self, baseurl):
         self.baseurl = baseurl
-        self.reported_methods = Call('{}/methods'.format(baseurl), 'GET')
+        self.reported_methods = call.Call('{}/methods'.format(baseurl), 'GET')
 
     def _make_call(self, endpoint, method, params):
         print '{}{}'.format(self.baseurl, endpoint)
-        return Call('{}{}'.format(self.baseurl, endpoint), method, params=params)
+        return call.Call('{}{}'.format(self.baseurl, endpoint), method, params=params)
 
     def get_top_prefixes(self, **params):
         # r = p.get_top_prefixes(start_time="2015-07-13T14:00", end_time="2015-07-13T15:00")
