@@ -1,3 +1,6 @@
+# TODO documentation
+# TODO unittests
+
 import call
 
 
@@ -7,7 +10,6 @@ class pySIR:
         self.reported_methods = call.Call('{}/methods'.format(baseurl), 'GET')
 
     def _make_call(self, endpoint, method, params):
-        print '{}{}'.format(self.baseurl, endpoint)
         return call.Call('{}{}'.format(self.baseurl, endpoint), method, params=params)
 
     def get_top_prefixes(self, **params):
@@ -76,5 +78,11 @@ class pySIR:
     def get_flows(self, **params):
         # r = p.get_flows(start_time="2015-07-13T14:00", end_time="2015-07-13T15:00")
         endpoint = "/pmacct/flows"
+        r = self._make_call(endpoint, 'GET', params)
+        return r
+
+    def get_bgp_prefixes(self, **params):
+        # r = p.get_bgp_prefixes(date="2015-07-16T11:00:01")
+        endpoint = "/pmacct/bgp_prefixes"
         r = self._make_call(endpoint, 'GET', params)
         return r
