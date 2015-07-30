@@ -1,23 +1,24 @@
-import os
+import uuid
 from setuptools import setup
+from pip.req import parse_requirements
 
-with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
-    README = readme.read()
+version = '0.41'
 
-# allow setup.py to be run from any path
-os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+install_reqs = parse_requirements('requirements.txt', session=uuid.uuid1())
+reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
     name='pySIR',
-    version='0.40',
+    version=version,
     packages=['pySIR'],
     include_package_data=True,
     license='Apache version 2.0',  # example license
     description='Python API to interact with the SIR agent',
-    long_description=README,
+    long_description=open('README.md').read(),
     url='https://github.com/dbarrosop/pySIR',
     author='David Barroso',
     author_email='dbarrosop@dravetech.com',
+    install_requires=reqs,
     classifiers=[
         'Topic :: System :: Networking',
         'License :: OSI Approved :: Apache Software License',
