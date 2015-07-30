@@ -14,27 +14,27 @@ pySIR implements in python the SIR API. It is just a one to one mapping to avoid
 
 You can use this library like this:
 
-    from pySIR.pySIR import pySIR
-    sir = pySIR('http://localhost:8080')
+      from pySIR.pySIR import pySIR
+      sir = pySIR('http://localhost:8080')
 
-    result = sir.get_top_prefixes(start_time="2015-07-25T14:00", end_time="2015-07-25T15:00", limit_prefixes=10, net_masks="24", exclude_net_masks=1)
+      result = sir.get_top_prefixes(start_time="2015-07-25T14:00", end_time="2015-07-25T15:00", limit_prefixes=10, net_masks="24", exclude_net_masks=1)
 
 After every call you will get a ```Call``` object which has three attributes:
 
 * **meta** - Some information regarding the call.
 
-      result.meta
-      {u'length': 10, u'request_time': 4.2649, u'error': False}
+        result.meta
+        {u'length': 10, u'request_time': 4.2649, u'error': False}
 
 * **result** - The actual result of the call.
 
-      result.result
-      [{u'as_dst': 43650, u'sum_bytes': 96527904, u'key': u'194.132.196.0/22'}, {u'as_dst': 1299, u'sum_bytes': 50852480, u'key': u'0.0.0.0/0'}, {u'as_dst': 2856, u'sum_bytes': 42289633, u'key': u'86.128.0.0/10'}, {u'as_dst': 43650, u'sum_bytes': 27442840, u'key': u'194.132.197.72/29'}, {u'as_dst': 3320, u'sum_bytes': 23312608, u'key': u'79.192.0.0/10'}, {u'as_dst': 2856, u'sum_bytes': 22229909, u'key': u'86.128.0.0/11'}, {u'as_dst': 2856, u'sum_bytes': 19337668, u'key': u'86.128.0.0/12'}, {u'as_dst': 3320, u'sum_bytes': 19048046, u'key': u'84.128.0.0/10'}, {u'as_dst': 2856, u'sum_bytes': 18816388, u'key': u'109.144.0.0/12'}, {u'as_dst': 3320, u'sum_bytes': 18002994, u'key': u'91.0.0.0/10'}]
+        result.result
+        [{u'as_dst': 43650, u'sum_bytes': 96527904, u'key': u'194.132.196.0/22'}, {u'as_dst': 1299, u'sum_bytes': 50852480, u'key': u'0.0.0.0/0'}, {u'as_dst': 2856, u'sum_bytes': 42289633, u'key': u'86.128.0.0/10'}, {u'as_dst': 43650, u'sum_bytes': 27442840, u'key': u'194.132.197.72/29'}, {u'as_dst': 3320, u'sum_bytes': 23312608, u'key': u'79.192.0.0/10'}, {u'as_dst': 2856, u'sum_bytes': 22229909, u'key': u'86.128.0.0/11'}, {u'as_dst': 2856, u'sum_bytes': 19337668, u'key': u'86.128.0.0/12'}, {u'as_dst': 3320, u'sum_bytes': 19048046, u'key': u'84.128.0.0/10'}, {u'as_dst': 2856, u'sum_bytes': 18816388, u'key': u'109.144.0.0/12'}, {u'as_dst': 3320, u'sum_bytes': 18002994, u'key': u'91.0.0.0/10'}]
 
 * **parameters** - The parameters used for the call.
 
-      result.parameters
-      {u'exclude_net_masks': u'1', u'limit_prefixes': 10, u'start_time': u'2015-07-25T14:00', u'end_time': u'2015-07-25T15:00', u'net_masks': u'24'}
+        result.parameters
+        {u'exclude_net_masks': u'1', u'limit_prefixes': 10, u'start_time': u'2015-07-25T14:00', u'end_time': u'2015-07-25T15:00', u'net_masks': u'24'}
 
 ## Supported methods
 
