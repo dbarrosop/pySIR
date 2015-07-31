@@ -58,7 +58,7 @@ The same apply when you want to send data (for example when storing or updating 
 
 ## SSL Verification
 
-By default pySIR is going to ignore SSL certificates. However, you can override this behavior and raise an Exception if
-the SSL certificate is not valid by initializing pySIR like this:
+By default pySIR is going to check SSL certificates and raise an exception if the SSL certificate is not valid. However,
+you can override this behavior and ignore certificates by initializing pySIR like this:
 
-      sir = pySIR('https://localhost:8080', verify_ssl=True)
+      sir = pySIR('https://localhost:8080', verify_ssl=False)
