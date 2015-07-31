@@ -55,3 +55,10 @@ The same apply when you want to send data (for example when storing or updating 
 
     sir.post_variables(name='this_is_a_variable', content='231', category='development', extra_vars='{"asd": "qwe" , "zxc":"poi"}')
     sir.put_variables_by_category_and_name(development, whatever, content='231', extra_vars='')
+
+## SSL Verification
+
+By default pySIR is going to ignore SSL certificates. However, you can override this behavior and raise an Exception if
+the SSL certificate is not valid by initializing pySIR like this:
+
+      sir = pySIR('https://localhost:8080', verify_ssl=True)

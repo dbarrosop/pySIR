@@ -4,15 +4,15 @@ import json
 import sir_exceptions
 
 class Call:
-    def __init__(self, url, method, params=None):
+    def __init__(self, url, verify_ssl, method, params=None):
         if method == 'GET':
-            r = requests.get(url, params=params)
+            r = requests.get(url, params=params, verify=verify_ssl)
         elif method == 'POST':
-            r = requests.post(url, json=params)
+            r = requests.post(url, json=params, verify=verify_ssl)
         elif method == 'PUT':
-            r = requests.put(url, json=params)
+            r = requests.put(url, json=params, verify=verify_ssl)
         elif method == 'DELETE':
-            r = requests.delete(url)
+            r = requests.delete(url, verify=verify_ssl)
 
         if r.status_code != 200:
             raise sir_exceptions.WrongCallException(r.status_code, r.content)

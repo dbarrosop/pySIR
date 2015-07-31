@@ -5,12 +5,13 @@ import call
 
 
 class pySIR:
-    def __init__(self, baseurl):
+    def __init__(self, baseurl, verify_ssl=True):
         # sir = pySIR('http://localhost:8080')
         self.baseurl = baseurl
+        self.verify_ssl = verify_ssl
 
     def _make_call(self, endpoint, method, params):
-        return call.Call('{}{}'.format(self.baseurl, endpoint), method, params=params)
+        return call.Call('{}{}'.format(self.baseurl, endpoint), self.verify_ssl, method, params=params)
 
     ################
     # ANALYTICS ####
