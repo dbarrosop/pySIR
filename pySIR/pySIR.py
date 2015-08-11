@@ -110,3 +110,9 @@ class pySIR:
         endpoint = "/api/v1.0/pmacct/bgp_prefixes"
         r = self._make_call(endpoint, 'GET', params)
         return r
+
+    def get_raw_bgp(self, **params):
+        # r = sir.get_bgp_prefixes(date="2015-07-16T11:00:01")
+        endpoint = "/api/v1.0/pmacct/raw_bgp"
+        r = self._make_call(endpoint, 'GET', params)
+        return r
