@@ -116,3 +116,15 @@ class pySIR:
         endpoint = "/api/v1.0/pmacct/raw_bgp"
         r = self._make_call(endpoint, 'GET', params)
         return r
+
+    def purge_bgp(self, **params):
+        # r = sir.purge_bgp(older_than="2015-07-16T11:00:01")
+        endpoint = "/api/v1.0/pmacct/purge_bgp"
+        r = self._make_call(endpoint, 'GET', params)
+        return r
+
+    def purge_flows(self, **params):
+        # r = sir.purge_flows(older_than="2015-07-16T11:00:01")
+        endpoint = "/api/v1.0/pmacct/purge_flows"
+        r = self._make_call(endpoint, 'GET', params)
+        return r
