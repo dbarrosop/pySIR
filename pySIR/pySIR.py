@@ -77,9 +77,9 @@ class pySIR:
         r = self._make_call(endpoint, 'GET', params)
         return r
 
-    def put_variables_by_category_and_name(self, q_category, q_name, **params):
+    def put_variables_by_category_and_name(self, category, name, **params):
         # r = sir.put_variables_by_category_and_name(development, whatever, content='231', extra_vars='{"asd": "qwe" , "zxc":"poi"}')
-        endpoint = "/api/v1.0/variables/categories/{}/{}".format(q_category, q_name)
+        endpoint = "/api/v1.0/variables/categories/{}/{}".format(category, name)
         r = self._make_call(endpoint, 'PUT', params)
         return r
 
